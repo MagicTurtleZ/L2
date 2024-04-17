@@ -1,0 +1,12 @@
+In an encoding where each character in the input string is three bytes wide,
+Selecting bytes 1-6 yields the first two characters (correct)
+LC_ALL=ja_JP.UTF-8 cut -b1-6 kanji.utf-8.txt
+:
+;
+Selecting all three characters with the -c switch doesn’t work.
+It behaves like -b, contrary to documentation.
+LC_ALL=ja_JP.UTF-8 cut -c1-3 kanji.utf-8.txt
+:Selecting:all:three:characters:with:the:-c:switch:doesn’t:work.
+In this case, an illegal UTF-8 string is produced.
+The -n switch would prevent this, if implemented.
+LC_ALL=ja_JP.UTF-8 cut -n -c2 kanji.utf-8.txt
